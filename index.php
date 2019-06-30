@@ -121,8 +121,8 @@ function add_my_field( $form ) {
         'id'               => 1000, // The Field ID must be unique on the form
         'formId'           => $form['id'],
         'label'            => '',
-        'addButtonText'    => 'Add item', // Optional
-        'removeButtonText' => 'Remove item', // Optional
+        'addButtonText'    => 'Add participant', // Optional
+        'removeButtonText' => 'Remove participant', // Optional
         'pageNumber'       => 1, // Ensure this is correct
         'fields'           => array( $name, $country, $email, $gmail, $meeting, $timezone ), // Add the fields here.
     ) );
