@@ -70,7 +70,7 @@ function add_my_field( $form ) {
     ) );
 
     $meeting = GF_Fields::create( array(
-        'type'   => 'checkboxes',
+        'type'   => 'checkbox',
         'id'     => 1005, // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Preferred meeting time',
@@ -100,6 +100,38 @@ function add_my_field( $form ) {
                     'value' => 'Other'
                 )
             ),
+        'inputs' => array (
+               array(  
+                  "id" => "1005.1",
+                  "label" => "Morning",
+                  "name" => ""
+               ),
+               array(   
+                  "id" => "1005.2",
+                  "label" => "Afternoon",
+                  "name" => ""
+               ),
+               array(   
+                  "id" => "1005.3",
+                  "label" => "Evening",
+                  "name" => ""
+               ),
+               array(   
+                  "id" => "1005.4",
+                  "label" => "No preference",
+                  "name" => ""
+               ),
+               array(   
+                  "id" => "1005.5",
+                  "label" => "Will change from week to week",
+                  "name" => ""
+               ),
+               array(   
+                  "id" => "1005.6",
+                  "label" => "Other",
+                  "name" => ""
+               )
+        ),
         'pageNumber'  => 1, // Ensure this is correct        
     ) );
 
@@ -170,6 +202,7 @@ function get_gform_data(){
      foreach ($individuals as $key => $person){
        $location = $person[1001];
        $name = $person[1003];
+       $time = $person[1005];
        $html .= '<tr><td>' . $name . '</td><td>' . $location . '</td><td>' . $school . '</td></tr>';
      }
     
