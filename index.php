@@ -200,18 +200,18 @@ function get_gform_data(){
         print("<pre>".print_r($value,true)."</pre>");
 
      foreach ($individuals as $key => $person){
-       $location = $person[1001];
-       $name = $person[1003];
-       $time = array();
-            // $person[1005.1], 
-            // $person[1005.2], 
-            // $person[1005.3],
-            // $person[1005.4],  
-            // $person[1005.5], 
-            // $person[1005.6], 
-            // $person[1005.7]    
-       //$time = $person[1005.1];                      
-       $time_string =  $person[1005.1]; //implode(", ",$time);
+       $location = $person['1001'];
+       $name = $person['1003'];
+       //change this to push to array and loop it
+       $time = array(
+            $person['1005.1'], 
+            $person['1005.2'], 
+            $person['1005.3'],
+            $person['1005.4'],  
+            $person['1005.5'], 
+            $person['1005.6']
+        );
+       $time_string =  implode(", ",$time);
        $html .= '<tr><td>' . $name . '</td><td>' . $location . '</td><td>' . $school . '</td><td>'.$time_string.'</td></tr>';
      }
     
