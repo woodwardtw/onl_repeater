@@ -104,17 +104,17 @@ function add_my_field( $form ) {
                array(  
                   "id" => "1005.1",
                   "label" => "Morning",
-                  "name" => ""
+                  "name" => "Morning"
                ),
                array(   
                   "id" => "1005.2",
                   "label" => "Afternoon",
-                  "name" => ""
+                  "name" => "Afternoon"
                ),
                array(   
                   "id" => "1005.3",
                   "label" => "Evening",
-                  "name" => ""
+                  "name" => "Evening"
                ),
                array(   
                   "id" => "1005.4",
@@ -193,7 +193,7 @@ function get_gform_data(){
   $entries = GFAPI::get_entries(11, $search_criteria, $sorting, $paging, $total_count );
   $raw = "";
   $gf_data = [];
-  $html = '<table class="registered"><tr><th>Name</th><th>Location</th><th>Institute</th></tr>';
+  $html = '<table class="registered"><tr><th>Name</th><th>Location</th><th>Institute</th><th></th></tr>';
   foreach ($entries as $key => $value) { 
      $individuals = $value[1000];
      $school = $value[4];
@@ -202,8 +202,17 @@ function get_gform_data(){
      foreach ($individuals as $key => $person){
        $location = $person[1001];
        $name = $person[1003];
-       $time = $person[1005];
-       $html .= '<tr><td>' . $name . '</td><td>' . $location . '</td><td>' . $school . '</td></tr>';
+       $time = array();
+            // $person[1005.1], 
+            // $person[1005.2], 
+            // $person[1005.3],
+            // $person[1005.4],  
+            // $person[1005.5], 
+            // $person[1005.6], 
+            // $person[1005.7]    
+       //$time = $person[1005.1];                      
+       $time_string =  $person[1005.1]; //implode(", ",$time);
+       $html .= '<tr><td>' . $name . '</td><td>' . $location . '</td><td>' . $school . '</td><td>'.$time_string.'</td></tr>';
      }
     
   }
