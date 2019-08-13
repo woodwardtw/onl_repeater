@@ -33,7 +33,7 @@ function add_my_field( $form ) {
  
     // Create a Single Line text field for the title
     $name = GF_Fields::create( array(
-        'type'   => 'name',
+        'type'   => 'text',
         'id'     => 1002, // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Name',
@@ -70,7 +70,7 @@ function add_my_field( $form ) {
     ) );
 
     $meeting = GF_Fields::create( array(
-        'type'   => 'checkbox',
+        'type'   => 'checkboxes',
         'id'     => 1005, // The Field ID must be unique on the form
         'formId' => $form['id'],
         'label'  => 'Preferred meeting time',
@@ -145,3 +145,38 @@ function remove_my_field( $form_meta, $form_id, $meta_name ) {
     return $form_meta;
 }
 
+/*
+****************RETRIEVE DATA
+*/
+
+function get_gform_data(){
+    $search_criteria = array(
+    'status'        => 'active',
+);
+ 
+  $sorting         = array();
+  $paging          = array( 'offset' => 0, 'page_size' => 200);
+  $total_count     = 0;
+ 
+  $entries = GFAPI::get_entries(11, $search_criteria, $sorting, $paging, $total_count );
+  $raw = "";
+  $gf_data = [];
+  $html = '<table class="registered"><tr><th>Name</th><th>Location</th><th>Institute</th></tr>';
+  foreach ($entries as $key => $value) { 
+     $individuals = $value[1000];
+     $school = $value[4];
+        print("<pre>".print_r($value,true)."</pre>");
+
+     foreach ($individuals as $key => $person){
+       $location = $person[1001];
+       $name = $person[1003];
+       $html .= '<tr><td>' . $name . '</td><td>' . $location . '</td><td>' . $school . '</td></tr>';
+     }
+    
+  }
+      return $html . '</table>';
+
+     //return $tag_data;
+}
+
+add_shortcode( 'gf_data', 'get_gform_data' );
