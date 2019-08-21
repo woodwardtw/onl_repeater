@@ -202,7 +202,7 @@ function get_gform_data(){
      foreach ($individuals as $key => $person){
        $location = $person['1001'];
        $name = $person['1003'];
-       //change this to push to array and loop it
+       //change this to push to array and loop it also array_key_exists(array_key, array_name)
        $time = array(
             $person['1005.1'], 
             $person['1005.2'], 
